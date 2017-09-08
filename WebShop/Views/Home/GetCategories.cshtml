@@ -1,0 +1,10 @@
+﻿@model List<WebShop.Models.Category>
+
+<ul style="list-style:none">
+    @foreach (var cat in Model)
+    {
+        <li>
+            @Html.ActionLink(cat.Name, "Products", "Home", new { cigla = cat.ID }, null)
+        </li>
+    }
+</ul>

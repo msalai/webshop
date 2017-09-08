@@ -1,0 +1,34 @@
+﻿@model List<WebShop.Models.Product>
+
+@foreach (var p in Model)
+{
+    <div class="col-md-4">
+        <div class="thumbnail">
+            <a href="@Url.Action("Details",new {id=p.ID})">
+                <img src="@p.imageURL" alt="@p.Name" style="width:100%">
+                <div class="caption">
+                    <p style="font-size:20px;">@p.Name</p>
+                    @if (p.Discount == false)
+                    {
+                        <p style="text-align:right;">
+                            <span class="label label-default">
+                                @p.Price kn
+                            </span>
+                        </p>
+                    }
+                    else
+                    {
+                        <p style="text-align:right;">
+                            <span class="label label-success">
+                                 Akcija! @p.DiscountPrice kn
+                            </span>
+                        </p>
+                    }
+
+                </div>
+            </a>
+        </div>
+    </div>
+}
+
+

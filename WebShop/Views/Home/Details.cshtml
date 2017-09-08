@@ -1,0 +1,25 @@
+﻿@model WebShop.Models.Product
+
+<div class="row">
+    <div class="col-sm-3">
+        <img class="img-responsive" src="@Model.imageURL" alt="@Model.Name">
+    </div>
+    <div class="col-sm-1">
+
+    </div>
+    <div class="col-sm-8">
+        <p style="font-size:40px;">@Model.Name</p>
+        @if (Model.Discount == true)
+        {
+            <p style="font-size:30px;">@Model.DiscountPrice kn</p>
+        }
+        else
+        {
+            <p style="font-size:30px;">@Model.Price kn</p>
+        }
+        <br />
+        <p>@Model.Description</p>
+
+        @Html.ActionLink("Add to cart", "AddToCart","ShoppingCart",new { ProductId=Model.ID }, new { @class = "btn btn-success" })
+    </div>
+</div>
