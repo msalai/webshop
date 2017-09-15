@@ -1,5 +1,41 @@
-﻿@model List<WebShop.Models.Product>
-
+﻿@*@model PagedList<WebShop.Models.Product>
+@using PagedList;
+@using PagedList.Mvc;*@
+@model List<WebShop.Models.Product>
+@*<div>
+    @using (Html.BeginForm("Products", "Home", FormMethod.Get))
+    {
+        @Html.Hidden("cigla", Model.First().CategoryId)
+        @Html.Hidden("sortOrder", (string)ViewBag.sort)
+        <div style="float:left;margin-right:5px;">
+            @Html.TextBox("SearchText", "", new { @class = "form-control" })
+        </div>
+        <div style="float:left">
+            <button class="btn btn-small btn-primary" type="submit" style="margin-left:5px;"><span class="glyphicon glyphicon-search"></span> Search</button>
+        </div>
+    }
+</div>*@
+@*<div style="float:right">
+    @if (ViewBag.sort == "Price")
+    {
+        <a href="@Url.Action("Products", new { cigla =Model.First().CategoryId, sortOrder = "Price", SearchText = ViewBag.search })" class="btn btn-primary btn-small">
+            <span class="glyphicon glyphicon-chevron-up"></span> Price - Lowest first
+        </a>
+        <a href="@Url.Action("Products", new { cigla =Model.First().CategoryId, sortOrder = "PriceDesc", SearchText = ViewBag.search })" class="btn btn-default btn-small">
+            <span class="glyphicon glyphicon-chevron-down"></span> Price - Highest first
+        </a>
+    }
+    else
+    {
+        <a href="@Url.Action("Products", new { cigla =Model.First().CategoryId, sortOrder = "Price", SearchText = ViewBag.search })" class="btn btn-default btn-small">
+            <span class="glyphicon glyphicon-chevron-up"></span> Price - Lowest first
+        </a>
+        <a href="@Url.Action("Products", new { cigla =Model.First().CategoryId, sortOrder = "PriceDesc", SearchText = ViewBag.search })" class="btn btn-primary btn-small">
+            <span class="glyphicon glyphicon-chevron-down"></span> Price - Highest first
+        </a>
+    }
+</div>*@
+<div style="clear:both; margin-bottom:20px;"></div>
 @foreach (var p in Model)
 {
     <div class="col-md-4">
@@ -20,7 +56,7 @@
                     {
                         <p style="text-align:right;">
                             <span class="label label-success">
-                                 Akcija! @p.DiscountPrice kn
+                                Akcija! @p.DiscountPrice kn
                             </span>
                         </p>
                     }
@@ -30,5 +66,6 @@
         </div>
     </div>
 }
-
+<div style="clear:both"></div>
+@*@Html.PagedListPager(Model, page => Url.Action("Products", new { page, cigla = Model.First().CategoryId, SearchText = ViewBag.search }), PagedListRenderOptions.TwitterBootstrapPager)*@
 
